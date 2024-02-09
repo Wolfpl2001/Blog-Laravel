@@ -19,7 +19,7 @@ class cblog extends Controller
     
         DB::insert('insert into blogs (title, blog) values (?, ?)', [$title, $blog]);
         
-        return redirect('/start')->with('message', 'Blog was successfully created');
+        return redirect('/dashboard')->with('message', 'Blog was successfully created');
     }
     public function remove($id)
     {

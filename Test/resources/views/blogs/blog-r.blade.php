@@ -10,7 +10,7 @@
 <body>
     <x-Flash-msg />
     <div>
-        <a href="/start"><ion-icon name="arrow-back-outline" class="back-arrow"></ion-icon></a>
+        <a href="/dashboard"><ion-icon name="arrow-back-outline" class="back-arrow"></ion-icon></a>
         @unless ($blog->isEmpty())
         @foreach ($blog as $singleBlog)
             <x-blog :blog="$singleBlog" />
@@ -24,4 +24,5 @@
 </body>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="//unpkg.com/alpinejs" defer></script>
 </html>

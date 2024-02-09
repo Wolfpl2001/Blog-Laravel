@@ -2,9 +2,8 @@
 
 use App\Models\blog;
 use App\Http\Controllers\cblog;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,27 +20,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/start', function () {
-return view('startpage');
-});
+Route::get('/dashboard', function () {
+    return view('startpage');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/register',[UserController::class, 'create']);
-
-Route::get('/login',[UserController::class, 'login']);
-
-Route::post('/users', [UserController::class, 'store']);
-
-Route::post('/user',[UserController::class, 'logins']);
-
-Route::get('/blog-c', function (){
-    return view('blogs.blog-c');
-});
+Route::get('/remove/{id}', [cblog::class, 'remove']);
+Route::post('/c-blog' , [cblog::class, 'blogs']);
 
 Route::get('/blog-r', function(){
     return view('blogs.blog-r', [
         'heading' => 'Latest blog',
         'blog' => blog::all()
     ]);
+})->middleware(['auth'])->name('blog-r');
+Route::get('/blog-c', function (){
+    return view('blogs.blog-c');
+})->middleware(['auth'])->name('blog-c');
+
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/login');
 });
 
 Route::get('/blog-list/{id}', function($id){
@@ -50,7 +48,10 @@ Route::get('/blog-list/{id}', function($id){
     return view('blogs.blog-list', [
         'blog' => $blog
     ]);
-});
+})->middleware(['auth'])->name('blog-list');
 
-Route::post('/c-blog' , [cblog::class, 'blogs']);
-Route::get('/remove/{id}', [cblog::class, 'remove']);
+Route::get('/register', function(){
+    return view('auth.register');
+})->middleware(['auth'])->name('register');
+
+require __DIR__.'/auth.php';

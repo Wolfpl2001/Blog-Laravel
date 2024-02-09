@@ -10,6 +10,7 @@
 
 <body>
     <div class = 'bg'>
+        <a href="/dashboard"><ion-icon name="arrow-back-outline" class="back-arrow-c"></ion-icon></a>
         <div class='login-form'>
             <x-Flash-msg />
             <h1 class='center'>Create a blog</h1>
@@ -41,4 +42,7 @@
         </div>
     </div>
 </body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="//unpkg.com/alpinejs" defer></script>
 </html>
